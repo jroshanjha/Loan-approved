@@ -90,13 +90,14 @@
         function updatePredictionResults(data) {
             const resultDiv = document.getElementById('predictionResult');
             const probability = data.probability * 100;
-
+            const predict = data.prediction
+            const res = predict == 1 ? 'Loan Approved' : 'Loan Denied';
             // Update prediction score and styling
             if (data.prediction ==1) {
                 resultDiv.className = 'prediction-result approved';
                 resultDiv.innerHTML = `
                     <h2>Loan Application Status</h2>
-                    <div class="prediction-score">${probability.toFixed(1)}%</div>
+                    <div class="prediction-score">${probability.toFixed(1)}% => ${res}</div>
                     <p style='background-color:brown; color:white'>Probability of Successful Repayment</p>
                     <p>Based on the provided information, there is a ${ probability }% chance of loan default(High Risk default).</p>
                 `;
@@ -104,7 +105,7 @@
                 resultDiv.className = 'prediction-result rejected';
                 resultDiv.innerHTML = `
                     <h2>Loan Application Status</h2>
-                    <div class="prediction-score">${(100 - probability).toFixed(1)}%</div>
+                    <div class="prediction-score">${(100 - probability).toFixed(1)}% => ${res}</div>
                     <p style='background-color:brown; color:white'>Risk of Default</p><br>
                     <p style='background-color:blue; color:white'>Based on the provided information, there is a ${100 - probability }% chance of loan default (Low Risk default).</p>
                 `;

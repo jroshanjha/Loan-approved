@@ -14,9 +14,9 @@ app = Flask(__name__)
 
 # Model configurations 
 # Load the model
-with open('model.pkl', 'rb') as model_file: 
-    pipeline = pickle.load(model_file)
-#pipeline = joblib.load("model.pkl")
+with open('models/xgboost.pkl', 'rb') as file:
+    model = pickle.load(file)
+    
 @app.route('/',methods=["GET","POST"])
 def index():
     return render_template("index.html")
@@ -55,8 +55,8 @@ def predict():
         # prediction_result = model.predict([features_array])
         data = [float(x) for x in request.form.values()]
         # Make prediction
-        prediction_result = pipeline.predict([data])
-        probabilities = pipeline.predict_proba([data])
+        prediction_result = model.predict([data])
+        probabilities = model.predict_proba([data])
         #return {'probability':probabilities}
         #return jsonify(prediction_result)
         loan_amnt = request.form.get('loan_amnt')
