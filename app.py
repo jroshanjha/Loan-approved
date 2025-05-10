@@ -83,18 +83,18 @@ def predict_api(): # Get form data as a dictionary
         #return jsonify(data)
         # Convert form data to features array 
         features = [int(data['person_age']),
-                    int(data['person_gender']),
+                    # int(data['person_gender']),
                     int(data['person_education']),
                     float(data['person_income']),
                     float(data['person_emp_exp']),
                     int(data['person_home_ownership']),
                     float(data['loan_amnt']),
                     int(data['loan_intent']),
-                    float(data['loan_int_rate']),
-                    float(data['loan_percent_income']),
-                    float(data['cb_person_cred_hist_length']),
-                    float(data['credit_score']),
-                    int(data['previous_loan_defaults'])]
+                    float(data['loan_int_rate'])]
+                    # float(data['loan_percent_income']),
+                    # float(data['cb_person_cred_hist_length']),
+                    # float(data['credit_score']),
+                    # int(data['previous_loan_defaults'])]
         
         #data['credit_score'] = int(data['credit_score'])
         
@@ -107,8 +107,8 @@ def predict_api(): # Get form data as a dictionary
         features_array = list(features)
         #return jsonify(features_array)
         
-        prediction = pipeline.predict([features_array]) 
-        probabilities = pipeline.predict_proba([features_array])
+        prediction = model.predict([features_array]) 
+        probabilities = model.predict_proba([features_array])
         
         # Convert numpy arrays to lists for JSON serialization 
         prediction = prediction.tolist() 

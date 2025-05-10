@@ -168,7 +168,15 @@
             <div class="form-grid">
                 <div class="form-group">
                     <label for="person_age">Age</label>
-                    <input type="number" id="person_age" name="person_age" class="form-control" required min="18" max="100">
+                    <select name="person_age" class="form-control" required>
+                        <option value=''>Select Age</option>
+                        <option value="1">35 or above</option>
+                        <option value="2">30 to 34</option>
+                        <option value="3">25 to 29</option>
+                        <option value="4">20 to 24</option>
+                        <option value="5">Below 20</option>
+                    </select>
+                   <!-- <input type="number" id="person_age" name="person_age" class="form-control" required min="18" max="100"> -->
                 </div>
 
              <!--   <div class="form-group">
